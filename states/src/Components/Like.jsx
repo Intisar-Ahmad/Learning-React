@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import liked from '../../public/like.svg'
-import notLiked from '../../public/notLiked.svg'
+import liked from '../assets/like.svg'
+import notLiked from '../assets/notLiked.svg'
 function Like() {
   const [like,setLike] = useState(false);
 

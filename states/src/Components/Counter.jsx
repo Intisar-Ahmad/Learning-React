@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
+
 function Counter() {
     const [count,setCount] = useState(0);
     
-    // console.log(count)
+    console.log("This is my last resort")
     function plus(){
-      setCount((count)=>count + 1)
+      setCount((count)=>count+1);
     }
     // console.log(count)
   return (

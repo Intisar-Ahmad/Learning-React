@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Counter from './Components/Counter'
-import Like from './Components/Like'
+import LudoBoard from './Components/LudoBoard'
 
 function App() {
 
   return (
     <>
    <h1>States in React</h1>
-   <Counter />
-   <Like />
+    <LudoBoard/>
     </>
   )
 }
