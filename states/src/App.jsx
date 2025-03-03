@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import './App.css'
-import LudoBoard from './Components/LudoBoard'
+import TodoList from './Components/TodoList'
+
 
 function App() {
 
   return (
     <>
-   <h1>States in React</h1>
-    <LudoBoard/>
+   <h1 className='text-3xl text-center '>States in React</h1>
+   <TodoList/>
     </>
   )
 }
