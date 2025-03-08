@@ -6,11 +6,14 @@ function TodoList() {
     const [todos, setTodo] = useState([]);
     const [inputValue,setInputValue] = useState("");
     function addTodo() {
-        const newTodo = {
+        const newTodo = {// create new todo
             maal:inputValue,
-            id:uuidv4()
+            id:uuidv4(),
+            done:false
         }
-        setTodo([...todos, newTodo]);
+        setTodo((todos)=>{
+           return [...todos, newTodo]// add it using callback
+    });
         setInputValue("");
 
     }
@@ -19,6 +22,36 @@ function TodoList() {
         setInputValue(event.target.value);
     }
 
+    function deleteTodo(id) {
+        // const index = todos.findIndex(todo => todo.id === id);
+        // todos.splice(index,1);
+        // setTodo([...todos]);
+
+        setTodo(todos=>todos.filter(todo => todo.id !== id));
+    }
+
+    function uppercaseAll() {
+        setTodo(todos.map((todo)=>{
+            return {
+                ...todo,
+                maal:todo.maal.toUpperCase()
+            }
+        }))
+    }
+
+    function uppercaseOne(id) {
+       setTodo((prevtodos)=>{
+      return  prevtodos.map(todo=>{
+          return todo.id === id ? {...todo,maal:todo.maal.toUpperCase()}:todo;   
+        })
+       })
+    }
+
+    function markDone(id) {
+        setTodo(prevTodo=>{
+            return prevTodo.map(todo=> todo.id === id? {...todo,done:!todo.done}:todo);
+        })
+    }
     return (
         <div>
 
@@ -28,13 +61,17 @@ function TodoList() {
             <ul className='list-disc pl-5 mt-3 '>
                 {
                     Array.isArray(todos) && todos.map(
-                        (todo) => <li key={todo.id} className='text-xl font-sans font-semibold'>
+                        (todo) => <li key={todo.id} className={`text-xl font-sans font-semibold ${todo.done && 'line-through'}`}>
+                            
                             {todo.maal}
-                            {todo.id}
+                        <button onClick={()=>deleteTodo(todo.id)} className='bg-amber-300 text-lg p-2 rounded-md cursor-pointer'>Delete</button>
+                        <button onClick={()=>uppercaseOne(todo.id)} className='bg-amber-300 text-lg p-2 rounded-md cursor-pointer'>upper</button>
+                        <button onClick={()=>markDone(todo.id)} className='bg-amber-300 text-lg p-2 rounded-md cursor-pointer'>{todo.done? "NotDone" : "Done"}</button>
                         </li>
                         ) 
                 }
             </ul>
+            <button className='w-40 h-14 rounded-full bg-gradient-to-r from-blue-500 via-green-500  to-red-500 hover:scale-105 transition-transform duration-300 hover:shadow-lg shadow-orange-500 text-white cursor-pointer' onClick={uppercaseAll}>UPPERCASE</button>
         </div>
     )
 }
