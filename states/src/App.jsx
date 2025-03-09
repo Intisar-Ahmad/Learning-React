@@ -10,7 +10,7 @@ function App() {
       cond:"Sum must be equal to 12"
     }
   }
-
+ 
   return (
     <>
  < WeatherWidget/>
